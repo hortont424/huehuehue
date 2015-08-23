@@ -28,8 +28,8 @@ lights = {
     "00:17:88:01:00:ba:63:38-0b": "Office 1",
     "00:17:88:01:00:b6:43:01-0b": "Office 2",
 
-    "00:17:88:01:00:ba:56:b2-0b": "Unknown",
-    "00:17:88:01:00:b6:45:31-0b": "Tim's Desk"
+    "00:17:88:01:00:ba:56:b2-0b": "Unknown 1",
+    "00:17:88:01:00:b6:45:31-0b": "Unknown 2"
 }
 
 plain_white_light_state = {
@@ -105,6 +105,27 @@ sensor_mappings = {
         4: {
             "Bedroom - Alicia": off_light_state,
             "Bedroom - Tim": off_light_state
+        }
+    },
+    "Bedroom Nightstand": {
+        1: {
+            "Bedroom - Alicia": off_light_state,
+            "Bedroom - Tim": off_light_state
+        },
+        2: {
+            "Bedroom - Alicia": plain_white_light_state,
+            "Bedroom - Tim": plain_white_light_state
+        },
+        # 3: # bring back the red
+        4: {
+            "Bedroom - Alicia": off_light_state,
+            "Bedroom - Tim": off_light_state,
+            "Living Room 1": off_light_state,
+            "Living Room 2": off_light_state,
+            "Kitchen Left": off_light_state,
+            "Kitchen Right": off_light_state,
+            "Office 1": off_light_state,
+            "Office 2": off_light_state
         }
     }
 }
