@@ -33,26 +33,31 @@ lights = {
 
 plain_white_light_state = {
     "bri": 255,
-    "ct": 343,
     "effect": "none",
-    "hue": 15331,
     "on": True,
-    "sat": 121,
     "xy": [0.4448, 0.4066]
 }
 
 dim_white_light_state = {
     "bri": 90,
-    "ct": 343,
     "effect": "none",
-    "hue": 15331,
     "on": True,
-    "sat": 121,
     "xy": [0.4448, 0.4066]
 }
 
 off_light_state = {
     "on": False
+}
+
+all_lights_off = {
+    "Bedroom - Alicia": off_light_state,
+    "Bedroom - Tim": off_light_state,
+    "Living Room 1": off_light_state,
+    "Living Room 2": off_light_state,
+    "Kitchen Left": off_light_state,
+    "Kitchen Right": off_light_state,
+    "Office 1": off_light_state,
+    "Office 2": off_light_state
 }
 
 sensor_mappings = {
@@ -68,7 +73,9 @@ sensor_mappings = {
             "Living Room 2": plain_white_light_state,
             "Kitchen Left": plain_white_light_state,
             "Kitchen Right": plain_white_light_state
-        }
+        },
+        # 3: # Kitchen only?
+        4: all_lights_off
     },
     "Office Door": {
         1: {
@@ -116,16 +123,7 @@ sensor_mappings = {
             "Bedroom - Tim": plain_white_light_state
         },
         # 3: # bring back the red
-        4: {
-            "Bedroom - Alicia": off_light_state,
-            "Bedroom - Tim": off_light_state,
-            "Living Room 1": off_light_state,
-            "Living Room 2": off_light_state,
-            "Kitchen Left": off_light_state,
-            "Kitchen Right": off_light_state,
-            "Office 1": off_light_state,
-            "Office 2": off_light_state
-        }
+        4: all_lights_off
     }
 }
 
@@ -208,7 +206,7 @@ for sensor_name, mapping in sensor_mappings.iteritems():
         scene_id = "tap" + sensor_id + "button" + str(button_number)
         button_scene_id_map[button_number] = scene_id
         mapped_light_states = {identifier("lights", name=name) : state for name, state in light_states.iteritems()}
-        write(makePath("scenes", scene_id), {"name": sensor_name + ": Button " + str(button_number), "lights": mapped_light_states.keys()})
+        write(makePath("scenes", scene_id), {"name": sensor_name + ": Button " + str(button_number), "lights": mapped_light_states.keys(), "transitiontime": 8})
         for light_id, light_state in mapped_light_states.iteritems():
             write(makePath("scenes", scene_id, "lights", light_id, "state"), light_state)
 
