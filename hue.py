@@ -4,7 +4,6 @@ from phue import Bridge
 import pprint
 import json
 import os
-import uuid
 
 bridge = Bridge('10.0.1.2')
 bridge.connect()
