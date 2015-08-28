@@ -74,7 +74,10 @@ sensor_mappings = {
             "Kitchen Left": plain_white_light_state,
             "Kitchen Right": plain_white_light_state
         },
-        # 3: # Kitchen only?
+        3: {
+            "Kitchen Left": plain_white_light_state,
+            "Kitchen Right": plain_white_light_state
+        },
         4: all_lights_off
     },
     "Office Door": {
