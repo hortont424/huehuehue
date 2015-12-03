@@ -5,7 +5,7 @@ import pprint
 import json
 import os
 
-bridge = Bridge('10.0.1.2')
+bridge = Bridge('10.0.1.29')
 bridge.connect()
 
 sensors = {
@@ -26,9 +26,6 @@ lights = {
 
     "00:17:88:01:00:ba:63:38-0b": "Office 1",
     "00:17:88:01:00:b6:43:01-0b": "Office 2",
-
-    "00:17:88:01:00:ba:56:b2-0b": "Unknown 1",
-    "00:17:88:01:00:b6:45:31-0b": "Unknown 2"
 }
 
 plain_white_light_state = {
