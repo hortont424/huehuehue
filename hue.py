@@ -5,8 +5,10 @@ import pprint
 import json
 import os
 
-bridge = Bridge('10.0.1.29')
+bridge = Bridge('10.0.1.2')
 bridge.connect()
+
+pprint.pprint(bridge.get_api())
 
 sensors = {
     "00:00:00:00:00:40:92:15-f2": "Bedroom Door",
@@ -17,15 +19,17 @@ sensors = {
 
 lights = {
     "00:17:88:01:00:b1:8a:1d-0b": "Bedroom - Alicia",
+    "00:17:88:01:00:1c:57:ea-0b": "Bedroom - Alicia (Under)",
     "00:17:88:01:00:b1:91:e2-0b": "Bedroom - Tim",
+    "00:17:88:01:00:1c:57:ae-0b": "Bedroom - Tim (Under)",
     
     "00:17:88:01:00:ba:20:96-0b": "Living Room 1",
     "00:17:88:01:00:bf:d8:5c-0b": "Living Room 2",
+    "00:17:88:01:00:b6:43:01-0b": "Living Room Outer",
     "00:17:88:01:00:b1:bf:53-0b": "Kitchen Left",
     "00:17:88:01:00:b6:43:72-0b": "Kitchen Right",
 
     "00:17:88:01:00:ba:63:38-0b": "Office 1",
-    "00:17:88:01:00:b6:43:01-0b": "Office 2",
 }
 
 plain_white_light_state = {
@@ -42,6 +46,13 @@ dim_white_light_state = {
     "xy": [0.4448, 0.4066]
 }
 
+alicia_night_light_state = {
+    "bri": 254,
+    "effect": "none",
+    "on": True,
+    "xy": [0.4384, 0.3606]
+}
+
 off_light_state = {
     "on": False
 }
@@ -49,12 +60,14 @@ off_light_state = {
 all_lights_off = {
     "Bedroom - Alicia": off_light_state,
     "Bedroom - Tim": off_light_state,
+    "Bedroom - Alicia (Under)": off_light_state,
+    "Bedroom - Tim (Under)": off_light_state,
     "Living Room 1": off_light_state,
     "Living Room 2": off_light_state,
     "Kitchen Left": off_light_state,
     "Kitchen Right": off_light_state,
     "Office 1": off_light_state,
-    "Office 2": off_light_state
+    "Living Room Outer": off_light_state
 }
 
 sensor_mappings = {
@@ -63,13 +76,15 @@ sensor_mappings = {
             "Living Room 1": off_light_state,
             "Living Room 2": off_light_state,
             "Kitchen Left": off_light_state,
-            "Kitchen Right": off_light_state
+            "Kitchen Right": off_light_state,
+            "Living Room Outer": off_light_state
         },
         2: {
             "Living Room 1": plain_white_light_state,
             "Living Room 2": plain_white_light_state,
             "Kitchen Left": plain_white_light_state,
-            "Kitchen Right": plain_white_light_state
+            "Kitchen Right": plain_white_light_state,
+            "Living Room Outer": plain_white_light_state
         },
         3: {
             "Kitchen Left": plain_white_light_state,
@@ -79,16 +94,13 @@ sensor_mappings = {
     },
     "Office Door": {
         1: {
-            "Office 1": off_light_state,
-            "Office 2": off_light_state
+            "Office 1": off_light_state
         },
         2: {
-            "Office 1": plain_white_light_state,
-            "Office 2": plain_white_light_state
+            "Office 1": plain_white_light_state
         },
         3: {
-            "Office 1": dim_white_light_state,
-            "Office 2": dim_white_light_state
+            "Office 1": dim_white_light_state
         }
     },
     "Bedroom Door": {
@@ -96,13 +108,15 @@ sensor_mappings = {
             "Living Room 1": off_light_state,
             "Living Room 2": off_light_state,
             "Kitchen Left": off_light_state,
-            "Kitchen Right": off_light_state
+            "Kitchen Right": off_light_state,
+            "Living Room Outer": off_light_state
         },
         2: {
             "Living Room 1": plain_white_light_state,
             "Living Room 2": plain_white_light_state,
             "Kitchen Left": plain_white_light_state,
-            "Kitchen Right": plain_white_light_state
+            "Kitchen Right": plain_white_light_state,
+            "Living Room Outer": plain_white_light_state
         },
         3: {
             "Bedroom - Alicia": plain_white_light_state,
@@ -116,13 +130,18 @@ sensor_mappings = {
     "Bedroom Nightstand": {
         1: {
             "Bedroom - Alicia": off_light_state,
-            "Bedroom - Tim": off_light_state
+            "Bedroom - Tim": off_light_state,
+            "Bedroom - Alicia (Under)": off_light_state,
+            "Bedroom - Tim (Under)": off_light_state
         },
         2: {
             "Bedroom - Alicia": plain_white_light_state,
             "Bedroom - Tim": plain_white_light_state
         },
-        # 3: # bring back the red
+        3: {
+            "Bedroom - Alicia (Under)": alicia_night_light_state,
+            "Bedroom - Tim (Under)": alicia_night_light_state,
+        },
         4: all_lights_off
     }
 }
