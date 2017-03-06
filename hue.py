@@ -128,7 +128,7 @@ sensor_mappings = {
         2: {
             "Dining Room Floor Left": plain_white_light_for_bloom_state,
             "Dining Room Floor Right": plain_white_light_for_bloom_state,
-            "Dining Room Standing": plain_white_light_state,
+            "Dining Room Standing": plain_white_light_for_bloom_state,
         },
         3: {
             "Hallway West 1": plain_white_light_state,
