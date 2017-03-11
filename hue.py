@@ -29,10 +29,10 @@ lights = {
     "00:17:88:01:00:b6:43:01-0b": "Bedroom Overhead 1",
     "00:17:88:01:00:b1:91:e2-0b": "Bedroom Overhead 2",
     "00:17:88:01:00:ba:63:38-0b": "Bedroom Overhead 3",
-    "00:17:88:01:00:1c:57:ea-0b": "Tim Bedroom Floor",
-    "00:17:88:01:02:4b:13:ee-0b": "Tim Bedroom Table",
-    "00:17:88:01:00:1c:57:ae-0b": "Alicia Bedroom Floor",
-    "00:17:88:01:02:45:47:e9-0b": "Alicia Bedroom Table",
+    "00:17:88:01:00:1c:57:ea-0b": "Bedroom Floor Tim",
+    "00:17:88:01:02:4b:13:ee-0b": "Bedroom Table Tim",
+    "00:17:88:01:00:1c:57:ae-0b": "Bedroom Floor Alicia",
+    "00:17:88:01:02:45:47:e9-0b": "Bedroom Table Alicia",
 
     # Alicia's Office
     "00:17:88:01:02:2a:1c:5b-0b": "Alicia Office Table",
@@ -52,7 +52,7 @@ lights = {
     "00:17:88:01:02:4b:14:55-0b": "Hallway West 2",
     "00:17:88:01:02:45:6f:da-0b": "Hallway East 1",
     "00:17:88:01:02:45:6c:ac-0b": "Hallway East 2",
-    "00:17:88:01:02:21:5a:bc-0b": "Entryway Flood",
+    "00:17:88:01:02:21:5a:bc-0b": "Hallway Flood",
 
     # Den
     "00:17:88:01:00:b6:43:72-0b": "Den Overhead 1",
@@ -76,31 +76,24 @@ lights = {
     "00:17:88:01:00:bf:d8:5c-0b": "Unused",
     "00:17:88:01:00:ba:20:96-0b": "Unused",
     "00:17:88:01:00:b1:bf:53-0b": "Unused",
-    "00:17:88:01:02:45:a9:15-0b": "Unused Above Entryway",
+    "00:17:88:01:02:45:a9:15-0b": "Unused",
 }
 
 def color_temperature_to_mireds(kelvin):
-    return 1000000. / kelvin
+    return int(1000000. / kelvin)
 
-plain_white_light_state = {
+plain_white_light_for_whiteambiance_state = {
     "bri": 255,
     "effect": "none",
     "on": True,
     "ct": color_temperature_to_mireds(2700)
 }
 
-plain_white_light_for_bloom_state = {
+plain_white_light_state = {
     "bri": 255,
     "effect": "none",
     "on": True,
     "xy": [0.459867518, 0.410600974],
-}
-
-dim_white_light_state = {
-    "bri": 90,
-    "effect": "none",
-    "on": True,
-    "xy": color_temperature_to_mireds(2700)
 }
 
 alicia_night_light_state = {
@@ -126,23 +119,23 @@ sensor_mappings = {
             "Dining Room Standing": off_light_state,
         },
         2: {
-            "Dining Room Floor Left": plain_white_light_for_bloom_state,
-            "Dining Room Floor Right": plain_white_light_for_bloom_state,
-            "Dining Room Standing": plain_white_light_for_bloom_state,
+            "Dining Room Floor Left": plain_white_light_state,
+            "Dining Room Floor Right": plain_white_light_state,
+            "Dining Room Standing": plain_white_light_state,
         },
         3: {
             "Hallway West 1": plain_white_light_state,
             "Hallway West 2": plain_white_light_state,
             "Hallway East 1": plain_white_light_state,
             "Hallway East 2": plain_white_light_state,
-            "Entryway Flood": plain_white_light_state,
+            "Hallway Flood": plain_white_light_for_whiteambiance_state,
         },
         4: {
             "Hallway West 1": off_light_state,
             "Hallway West 2": off_light_state,
             "Hallway East 1": off_light_state,
             "Hallway East 2": off_light_state,
-            "Entryway Flood": off_light_state,
+            "Hallway Flood": off_light_state,
         }
     },
     "Gym Door": {
@@ -171,32 +164,32 @@ sensor_mappings = {
             "Hallway West 2": off_light_state,
             "Hallway East 1": off_light_state,
             "Hallway East 2": off_light_state,
-            "Entryway Flood": off_light_state,
+            "Hallway Flood": off_light_state,
         },
         2: {
             "Hallway West 1": plain_white_light_state,
             "Hallway West 2": plain_white_light_state,
             "Hallway East 1": plain_white_light_state,
             "Hallway East 2": plain_white_light_state,
-            "Entryway Flood": plain_white_light_state,
+            "Hallway Flood": plain_white_light_state,
         },
         3: {
             "Bedroom Overhead 1": plain_white_light_state,
             "Bedroom Overhead 2": plain_white_light_state,
             "Bedroom Overhead 3": plain_white_light_state,
-            "Tim Bedroom Floor": plain_white_light_for_bloom_state,
-            "Tim Bedroom Table": plain_white_light_state,
-            "Alicia Bedroom Floor": plain_white_light_for_bloom_state,
-            "Alicia Bedroom Table": plain_white_light_state,
+            "Bedroom Floor Tim": plain_white_light_state,
+            "Bedroom Table Tim": plain_white_light_state,
+            "Bedroom Floor Alicia": plain_white_light_state,
+            "Bedroom Table Alicia": plain_white_light_state,
         },
         4: {
             "Bedroom Overhead 1": off_light_state,
             "Bedroom Overhead 2": off_light_state,
             "Bedroom Overhead 3": off_light_state,
-            "Tim Bedroom Floor": off_light_state,
-            "Tim Bedroom Table": off_light_state,
-            "Alicia Bedroom Floor": off_light_state,
-            "Alicia Bedroom Table": off_light_state,
+            "Bedroom Floor Tim": off_light_state,
+            "Bedroom Table Tim": off_light_state,
+            "Bedroom Floor Alicia": off_light_state,
+            "Bedroom Table Alicia": off_light_state,
         }
     },
     "Bedroom Nightstand": {
@@ -204,22 +197,22 @@ sensor_mappings = {
             "Bedroom Overhead 1": off_light_state,
             "Bedroom Overhead 2": off_light_state,
             "Bedroom Overhead 3": off_light_state,
-            "Tim Bedroom Floor": off_light_state,
-            "Tim Bedroom Table": off_light_state,
-            "Alicia Bedroom Floor": off_light_state,
-            "Alicia Bedroom Table": off_light_state,
+            "Bedroom Floor Tim": off_light_state,
+            "Bedroom Table Tim": off_light_state,
+            "Bedroom Floor Alicia": off_light_state,
+            "Bedroom Table Alicia": off_light_state,
         },
         2: {
-            "Tim Bedroom Floor": plain_white_light_for_bloom_state,
-            "Tim Bedroom Table": plain_white_light_state,
-            "Alicia Bedroom Floor": plain_white_light_for_bloom_state,
-            "Alicia Bedroom Table": plain_white_light_state,
+            "Bedroom Floor Tim": plain_white_light_state,
+            "Bedroom Table Tim": plain_white_light_state,
+            "Bedroom Floor Alicia": plain_white_light_state,
+            "Bedroom Table Alicia": plain_white_light_state,
         },
         3: {
-            "Tim Bedroom Floor": alicia_night_light_state,
-            "Alicia Bedroom Floor": alicia_night_light_state,
-            "Tim Bedroom Table": off_light_state,
-            "Alicia Bedroom Table": off_light_state,
+            "Bedroom Floor Tim": alicia_night_light_state,
+            "Bedroom Floor Alicia": alicia_night_light_state,
+            "Bedroom Table Tim": off_light_state,
+            "Bedroom Table Alicia": off_light_state,
             "Bedroom Overhead 1": off_light_state,
             "Bedroom Overhead 2": off_light_state,
             "Bedroom Overhead 3": off_light_state,
