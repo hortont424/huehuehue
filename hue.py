@@ -12,16 +12,33 @@ bridge.connect()
 bridge_state = bridge.get_api()
 pprint.pprint(bridge_state)
 
-for light_num, light in bridge_state["lights"].iteritems():
-    print light["uniqueid"], light["name"]
+print "Lights:"
 
-# sys.exit(1)
+for light_num, light in bridge_state["lights"].iteritems():
+    print "\t", light["uniqueid"], light["name"]
+
+print "Sensors:"
+
+for sensor_num, sensor in bridge_state["sensors"].iteritems():
+    if not "uniqueid" in sensor:
+        continue
+    print "\t", sensor["uniqueid"], sensor["name"]
 
 sensors = {
+    # Tap
     "00:00:00:00:00:40:92:15-f2": "Kitchen Door",
     "00:00:00:00:00:42:06:3b-f2": "Gym Door",
     "00:00:00:00:00:43:c1:9b-f2": "Bedroom Nightstand",
-    "00:00:00:00:00:43:1c:9f-f2": "Bedroom Door",
+    "00:00:00:00:00:43:1c:9f-f2": "Bedroom Door Outer",
+    "00:00:00:00:00:42:a3:1b-f2": "Tim Office",
+    "00:00:00:00:00:41:e4:f4-f2": "Alicia Office",
+    "00:00:00:00:00:41:e7:c0-f2": "Den",
+    "00:00:00:00:00:42:8e:8c-f2": "Bedroom Door Inner",
+    "00:00:00:00:00:47:2f:3b-f2": "Front Door",
+    "00:00:00:00:00:40:a4:a1-f2": "Kitchen Entryway",
+
+    # Dimmer
+    # "00:17:88:01:02:0f:56:79-02-fc00": "Hue dimmer switch 1",
 }
 
 lights = {
@@ -42,10 +59,10 @@ lights = {
     "00:17:88:01:02:45:47:7d-0b": "Tim Office 1",
     "00:17:88:01:02:45:47:be-0b": "Tim Office 2",
 
-    # Tim's Bathroom    
-    "00:17:88:01:02:3a:c6:48-0b": "Tim Bathroom 1",
-    "00:17:88:01:02:3a:c7:6b-0b": "Tim Bathroom 2",
-    "00:17:88:01:02:3a:c0:79-0b": "Tim Bathroom 3",
+    # Tim's Bathroom
+    "00:17:88:01:02:3a:c6:48-0b": "Tim Bath 1",
+    "00:17:88:01:02:3a:c7:6b-0b": "Tim Bath 2",
+    "00:17:88:01:02:3a:c0:79-0b": "Tim Bath 3",
 
     # Hallway
     "00:17:88:01:02:45:a8:30-0b": "Hallway West 1",
@@ -70,13 +87,6 @@ lights = {
     "00:17:88:01:01:17:68:78-0b": "Dining Room Floor Left",
     "00:17:88:01:01:16:71:d8-0b": "Dining Room Floor Right",
     "00:17:88:01:02:3e:7b:a1-0b": "Dining Room Standing",
-
-    # Unused
-    "00:17:88:01:00:b1:8a:1d-0b": "Unused",
-    "00:17:88:01:00:bf:d8:5c-0b": "Unused",
-    "00:17:88:01:00:ba:20:96-0b": "Unused",
-    "00:17:88:01:00:b1:bf:53-0b": "Unused",
-    "00:17:88:01:02:45:a9:15-0b": "Unused",
 }
 
 def color_temperature_to_mireds(kelvin):
@@ -158,7 +168,7 @@ sensor_mappings = {
         4: {
         }
     },
-    "Bedroom Door": {
+    "Bedroom Door Outer": {
         1: {
             "Hallway West 1": off_light_state,
             "Hallway West 2": off_light_state,
@@ -218,7 +228,137 @@ sensor_mappings = {
             "Bedroom Overhead 3": off_light_state,
         },
         4: all_lights_off
-    }
+    },
+    "Bedroom Door Inner": {
+        1: {
+            "Bedroom Overhead 1": off_light_state,
+            "Bedroom Overhead 2": off_light_state,
+            "Bedroom Overhead 3": off_light_state,
+            "Bedroom Floor Tim": off_light_state,
+            "Bedroom Table Tim": off_light_state,
+            "Bedroom Floor Alicia": off_light_state,
+            "Bedroom Table Alicia": off_light_state,
+        },
+        2: {
+            "Bedroom Overhead 1": plain_white_light_state,
+            "Bedroom Overhead 2": plain_white_light_state,
+            "Bedroom Overhead 3": plain_white_light_state,
+            "Bedroom Floor Tim": plain_white_light_state,
+            "Bedroom Table Tim": plain_white_light_state,
+            "Bedroom Floor Alicia": plain_white_light_state,
+            "Bedroom Table Alicia": plain_white_light_state,
+        },
+        3: {
+            "Bedroom Floor Tim": alicia_night_light_state,
+            "Bedroom Floor Alicia": alicia_night_light_state,
+            "Bedroom Table Tim": off_light_state,
+            "Bedroom Table Alicia": off_light_state,
+            "Bedroom Overhead 1": off_light_state,
+            "Bedroom Overhead 2": off_light_state,
+            "Bedroom Overhead 3": off_light_state,
+        },
+        4: all_lights_off
+    },
+    "Tim Office": {
+        1: {
+            "Tim Office 1": off_light_state,
+            "Tim Office 2": off_light_state,
+        },
+        2: {
+            "Tim Office 1": plain_white_light_state,
+            "Tim Office 2": plain_white_light_state,
+        },
+        3: {
+            "Tim Office 1": alicia_night_light_state,
+            "Tim Office 2": alicia_night_light_state,
+        },
+        4: {
+            "Hallway West 1": plain_white_light_state,
+            "Hallway West 2": plain_white_light_state,
+            "Hallway East 1": plain_white_light_state,
+            "Hallway East 2": plain_white_light_state,
+            "Hallway Flood": plain_white_light_for_whiteambiance_state,
+        }
+    },
+    "Alicia Office": {
+        1: {
+            "Alicia Office Table": off_light_state,
+            "Alicia Office Overhead": off_light_state,
+        },
+        2: {
+            "Alicia Office Table": plain_white_light_state,
+            "Alicia Office Overhead": plain_white_light_state,
+        },
+        3: {
+            "Alicia Office Table": alicia_night_light_state,
+            "Alicia Office Overhead": alicia_night_light_state,
+        },
+        4: {
+            "Hallway West 1": plain_white_light_state,
+            "Hallway West 2": plain_white_light_state,
+            "Hallway East 1": plain_white_light_state,
+            "Hallway East 2": plain_white_light_state,
+            "Hallway Flood": plain_white_light_for_whiteambiance_state,
+        }
+    },
+    "Front Door": {
+        1: {
+            "Hallway West 1": off_light_state,
+            "Hallway West 2": off_light_state,
+            "Hallway East 1": off_light_state,
+            "Hallway East 2": off_light_state,
+            "Hallway Flood": off_light_state,
+        },
+        2: {
+            "Hallway West 1": plain_white_light_state,
+            "Hallway West 2": plain_white_light_state,
+            "Hallway East 1": plain_white_light_state,
+            "Hallway East 2": plain_white_light_state,
+            "Hallway Flood": plain_white_light_for_whiteambiance_state,
+        },
+        3: {
+        },
+        4: all_lights_off
+    },
+    "Kitchen Entryway": {
+        1: {
+            "Dining Room Floor Left": off_light_state,
+            "Dining Room Floor Right": off_light_state,
+            "Dining Room Standing": off_light_state,
+        },
+        2: {
+            "Dining Room Floor Left": plain_white_light_state,
+            "Dining Room Floor Right": plain_white_light_state,
+            "Dining Room Standing": plain_white_light_state,
+        },
+        3: {
+        },
+        4: all_lights_off
+    },
+    "Den": {
+        1: {
+            "Den Overhead 1": off_light_state,
+            "Den Overhead 2": off_light_state,
+            "Den Overhead 3": off_light_state,
+        },
+        2: {
+            "Den Overhead 1": plain_white_light_state,
+            "Den Overhead 2": plain_white_light_state,
+            "Den Overhead 3": plain_white_light_state,
+        },
+        3: {
+            "Den Overhead 1": alicia_night_light_state,
+            "Den Overhead 2": alicia_night_light_state,
+            "Den Overhead 3": alicia_night_light_state,
+        },
+        4: {
+            "Hallway West 1": plain_white_light_state,
+            "Hallway West 2": plain_white_light_state,
+            "Hallway East 1": plain_white_light_state,
+            "Hallway East 2": plain_white_light_state,
+            "Hallway Flood": plain_white_light_for_whiteambiance_state,
+        }
+    },
 }
 
 state = bridge.get_api()
@@ -229,7 +369,7 @@ def identifier(kind, uuid=None, name=None):
             continue
         if (uuid and config["uniqueid"] == uuid) or (name and config["name"] == name):
             return other_identifier
-    print "Didn't find a identifier for", name
+    print "Didn't find a identifier for", name or uuid
     return None
 
 def path(kind, **kwargs):
