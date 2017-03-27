@@ -129,30 +129,31 @@ for _, light_name in lights.iteritems():
 sensor_mappings = {
     "Kitchen Door": {
         1: {
-            "Hallway West 1": off_light_state,
-            "Hallway West 2": off_light_state,
-            "Hallway East 1": off_light_state,
-            "Hallway East 2": off_light_state,
-            "Hallway Flood": off_light_state,
+            "Dining Room Floor Left": off_light_state,
+            "Dining Room Floor Right": off_light_state,
+            "Dining Room Standing 1": off_light_state,
+            "Dining Room Standing 2": off_light_state,
         },
         2: {
+            "Dining Room Floor Left": plain_white_light_state,
+            "Dining Room Floor Right": plain_white_light_state,
+            "Dining Room Standing 1": plain_white_light_state,
+            "Dining Room Standing 2": plain_white_light_state,
+        },
+        
+        3: {
             "Hallway West 1": plain_white_light_state,
             "Hallway West 2": plain_white_light_state,
             "Hallway East 1": plain_white_light_state,
             "Hallway East 2": plain_white_light_state,
             "Hallway Flood": plain_white_light_for_whiteambiance_state,
         },
-        3: {
-            "Dining Room Floor Left": plain_white_light_state,
-            "Dining Room Floor Right": plain_white_light_state,
-            "Dining Room Standing 1": plain_white_light_state,
-            "Dining Room Standing 2": plain_white_light_state,
-        },
         4: {
-            "Dining Room Floor Left": off_light_state,
-            "Dining Room Floor Right": off_light_state,
-            "Dining Room Standing 1": off_light_state,
-            "Dining Room Standing 2": off_light_state,
+            "Hallway West 1": off_light_state,
+            "Hallway West 2": off_light_state,
+            "Hallway East 1": off_light_state,
+            "Hallway East 2": off_light_state,
+            "Hallway Flood": off_light_state,
         }
     },
     "Gym Door": {
