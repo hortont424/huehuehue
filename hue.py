@@ -90,7 +90,8 @@ lights = {
     # Dining Room
     "00:17:88:01:01:17:68:78-0b": "Dining Room Floor Left",
     "00:17:88:01:01:16:71:d8-0b": "Dining Room Floor Right",
-    "00:17:88:01:02:3e:7b:a1-0b": "Dining Room Standing",
+    "00:17:88:01:02:3e:7b:a1-0b": "Dining Room Standing 1",
+    "00:17:88:01:02:45:a9:15-0b": "Dining Room Standing 2",
 }
 
 def color_temperature_to_mireds(kelvin):
@@ -128,28 +129,30 @@ for _, light_name in lights.iteritems():
 sensor_mappings = {
     "Kitchen Door": {
         1: {
-            "Dining Room Floor Left": off_light_state,
-            "Dining Room Floor Right": off_light_state,
-            "Dining Room Standing": off_light_state,
+            "Hallway West 1": off_light_state,
+            "Hallway West 2": off_light_state,
+            "Hallway East 1": off_light_state,
+            "Hallway East 2": off_light_state,
+            "Hallway Flood": off_light_state,
         },
         2: {
-            "Dining Room Floor Left": plain_white_light_state,
-            "Dining Room Floor Right": plain_white_light_state,
-            "Dining Room Standing": plain_white_light_state,
-        },
-        3: {
             "Hallway West 1": plain_white_light_state,
             "Hallway West 2": plain_white_light_state,
             "Hallway East 1": plain_white_light_state,
             "Hallway East 2": plain_white_light_state,
             "Hallway Flood": plain_white_light_for_whiteambiance_state,
         },
+        3: {
+            "Dining Room Floor Left": plain_white_light_state,
+            "Dining Room Floor Right": plain_white_light_state,
+            "Dining Room Standing 1": plain_white_light_state,
+            "Dining Room Standing 2": plain_white_light_state,
+        },
         4: {
-            "Hallway West 1": off_light_state,
-            "Hallway West 2": off_light_state,
-            "Hallway East 1": off_light_state,
-            "Hallway East 2": off_light_state,
-            "Hallway Flood": off_light_state,
+            "Dining Room Floor Left": off_light_state,
+            "Dining Room Floor Right": off_light_state,
+            "Dining Room Standing 1": off_light_state,
+            "Dining Room Standing 2": off_light_state,
         }
     },
     "Gym Door": {
@@ -343,12 +346,14 @@ sensor_mappings = {
         1: {
             "Dining Room Floor Left": off_light_state,
             "Dining Room Floor Right": off_light_state,
-            "Dining Room Standing": off_light_state,
+            "Dining Room Standing 1": off_light_state,
+            "Dining Room Standing 2": off_light_state,
         },
         2: {
             "Dining Room Floor Left": plain_white_light_state,
             "Dining Room Floor Right": plain_white_light_state,
-            "Dining Room Standing": plain_white_light_state,
+            "Dining Room Standing 1": plain_white_light_state,
+            "Dining Room Standing 2": plain_white_light_state,
         },
         3: {
         },
