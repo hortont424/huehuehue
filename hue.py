@@ -79,6 +79,7 @@ lights = {
     "00:17:88:01:00:b6:43:72-0b": "Den Overhead 1",
     "00:17:88:01:00:b6:45:31-0b": "Den Overhead 2",
     "00:17:88:01:00:ba:56:b2-0b": "Den Overhead 3",
+    "00:17:88:01:02:76:68:5c-0b": "Den Couch",
 
     # Gym
     "00:17:88:01:02:3a:d1:19-0b": "Gym Standing 1",
@@ -365,6 +366,7 @@ sensor_mappings = {
             "Den Overhead 1": off_light_state,
             "Den Overhead 2": off_light_state,
             "Den Overhead 3": off_light_state,
+            "Den Couch": off_light_state,
         },
         2: {
             "Den Overhead 1": plain_white_light_state,
@@ -372,9 +374,7 @@ sensor_mappings = {
             "Den Overhead 3": plain_white_light_state,
         },
         3: {
-            "Den Overhead 1": alicia_night_light_state,
-            "Den Overhead 2": alicia_night_light_state,
-            "Den Overhead 3": alicia_night_light_state,
+            "Den Couch": plain_white_light_state,
         },
         4: {
             "Hallway West 1": plain_white_light_state,
