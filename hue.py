@@ -112,11 +112,11 @@ plain_white_light_state = {
     "xy": [0.459867518, 0.410600974],
 }
 
-alicia_night_light_state = {
+half_plain_white_light_state = {
     "bri": 127,
     "effect": "none",
     "on": True,
-    "xy": [0.4384, 0.3606]
+    "xy": [0.459867518, 0.410600974],
 }
 
 off_light_state = {
@@ -231,8 +231,8 @@ sensor_mappings = {
             "Bedroom Overhead 3": off_light_state,
         },
         3: {
-            "Bedroom Floor Tim": alicia_night_light_state,
-            "Bedroom Floor Alicia": alicia_night_light_state,
+            "Bedroom Floor Tim": half_plain_white_light_state,
+            "Bedroom Floor Alicia": half_plain_white_light_state,
             "Bedroom Table Tim": off_light_state,
             "Bedroom Table Alicia": off_light_state,
             "Bedroom Overhead 1": off_light_state,
@@ -279,16 +279,16 @@ sensor_mappings = {
             "Tim Office Floor 2": off_light_state,
         },
         2: {
-            "Tim Office 1": plain_white_light_state,
-            "Tim Office 2": plain_white_light_state,
+            "Tim Office 1": off_light_state,
+            "Tim Office 2": off_light_state,
             "Tim Office Floor 1": plain_white_light_state,
             "Tim Office Floor 2": plain_white_light_state,
         },
         3: {
-            "Tim Office 1": alicia_night_light_state,
-            "Tim Office 2": alicia_night_light_state,
-            "Tim Office Floor 1": alicia_night_light_state,
-            "Tim Office Floor 2": alicia_night_light_state,
+            "Tim Office 1": plain_white_light_state,
+            "Tim Office 2": plain_white_light_state,
+            "Tim Office Floor 1": plain_white_light_state,
+            "Tim Office Floor 2": plain_white_light_state,
         },
         4: {
             "Hallway West 1": plain_white_light_state,
@@ -312,10 +312,10 @@ sensor_mappings = {
             "Alicia Office Floor 2": plain_white_light_state,
         },
         3: {
-            "Alicia Office Table": alicia_night_light_state,
-            "Alicia Office Overhead": alicia_night_light_state,
-            "Alicia Office Floor 1": alicia_night_light_state,
-            "Alicia Office Floor 2": alicia_night_light_state,
+            "Alicia Office Table": half_plain_white_light_state,
+            "Alicia Office Overhead": half_plain_white_light_state,
+            "Alicia Office Floor 1": half_plain_white_light_state,
+            "Alicia Office Floor 2": half_plain_white_light_state,
         },
         4: {
             "Hallway West 1": plain_white_light_state,
